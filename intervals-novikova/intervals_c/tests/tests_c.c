@@ -1,4 +1,4 @@
-#include "tests_c.h"
+#include "../headers/tests_c.h"
 
 void populate(struct SetInterval* set, int lower_limit, int upper_limit, int elements) {
     srand(time(NULL));

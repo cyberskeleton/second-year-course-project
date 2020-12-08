@@ -2,7 +2,7 @@
 #define INTERVALS_CROSS_TESTS_H
 #include <iostream>
 #include <string>
-#include "../intervals_c/tests_c.h"
+#include "../../intervals_c/headers/tests_c.h"
 #include "IntervalWrapper.h"
 #include "SetIntervalWrapper.h"
 #include "service.h"

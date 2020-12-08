@@ -1,4 +1,4 @@
-#include "IntervalWrapper.h"
+#include "../headers/IntervalWrapper.h"
 using namespace std;
 
 IntervalWrapper::IntervalWrapper(Interval *pInterval) {

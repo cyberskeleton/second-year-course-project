@@ -1,4 +1,4 @@
-#include "SetIntervalWrapper.h"
+#include "../headers/SetIntervalWrapper.h"
 
 SetIntervalWrapper::SetIntervalWrapper() {
     setInterval = init();

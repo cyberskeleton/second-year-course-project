@@ -1,6 +1,6 @@
 #include <fstream>
 #include <sstream>
-#include "service.h"
+#include "../headers/service.h"
 
 std::vector<std::vector<std::string>> service::parseCSV(std::string line, const std::string& fileName) {
     std::vector<std::vector<std::string>> parsedCsv;

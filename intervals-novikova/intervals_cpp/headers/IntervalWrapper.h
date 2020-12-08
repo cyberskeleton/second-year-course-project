@@ -2,7 +2,7 @@
 #define INTERVALS_INTERVALWRAPPER_H
 #include <string>
 #include <ostream>
-#include "../intervals_c/interval.h"
+#include "../../intervals_c/headers/interval.h"
 
 class IntervalWrapper {
 private:

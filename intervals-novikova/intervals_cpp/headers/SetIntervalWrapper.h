@@ -1,7 +1,7 @@
 #ifndef INTERVALS_SETINTERVALWRAPPER_H
 #define INTERVALS_SETINTERVALWRAPPER_H
 #include <string>
-#include "../intervals_c/set_interval.h"
+#include "../../intervals_c/headers/set_interval.h"
 #include "IntervalWrapper.h"
 
 class SetIntervalWrapper {

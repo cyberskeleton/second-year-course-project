@@ -1,6 +1,6 @@
 #include <iostream>
-#include "intervals_c/tests_c.h"
-#include "intervals_cpp/cross_tests.h"
+#include "intervals_c/headers/tests_c.h"
+#include "intervals_cpp/headers/cross_tests.h"
 
 using namespace std;
 

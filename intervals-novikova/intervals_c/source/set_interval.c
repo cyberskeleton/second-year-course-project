@@ -1,4 +1,4 @@
-#include "set_interval.h"
+#include "../headers/set_interval.h"
 
 struct SetInterval* init() {
     struct SetInterval* set = malloc(sizeof(struct SetInterval));
