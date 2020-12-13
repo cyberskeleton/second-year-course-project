@@ -492,9 +492,9 @@ void test_sort_intervals() {
     if (DEBUG_TEST) printf("Before:\n");
     // third after sort
     add(set, open, closed, 15.0, 20.0);
-    // second after sort
+    // secondCoefficient after sort
     add(set, open, closed, 10.0, 20.0);
-    // first after sort
+    // firstCoefficient after sort
     add(set, closed, open, 10.0, 20.0);
 
     sort_intervals(set);

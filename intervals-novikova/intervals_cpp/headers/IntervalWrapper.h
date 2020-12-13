@@ -3,6 +3,7 @@
 #include <string>
 #include <ostream>
 #include "../../intervals_c/headers/interval.h"
+using namespace std;
 
 class IntervalWrapper {
 private:
@@ -16,9 +17,7 @@ public:
         return interval;
     };
 
-    std::string toString();
-
-    friend std::ostream &operator<<(std::ostream &os, const IntervalWrapper &wrapper);
+    string toString();
 };
 
 #endif //INTERVALS_INTERVALWRAPPER_H

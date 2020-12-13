@@ -108,9 +108,9 @@ struct Interval* get_intersection(struct SetInterval* set) {
 /**
  * Compares two intervals by start (left margin)
  *
- * @param a_ptr first(left) interval
+ * @param a_ptr firstCoefficient(left) interval
  * @param b_ptr next(right) interval
- * @return -1 if first is less, 1 when is greater than second, 0 if equals
+ * @return -1 if firstCoefficient is less, 1 when is greater than secondCoefficient, 0 if equals
  */
 int compare_start(const void* a_ptr, const void* b_ptr) {
     const struct Interval* a_str = (struct Interval*)a_ptr;
@@ -130,9 +130,9 @@ int compare_start(const void* a_ptr, const void* b_ptr) {
 /**
  * Compares two intervals by end (right margin)
  *
- * @param a_ptr first(left) interval
+ * @param a_ptr firstCoefficient(left) interval
  * @param b_ptr next(right) interval
- * @return -1 if first is less, 1 when greater than second, 0 if equals
+ * @return -1 if firstCoefficient is less, 1 when greater than secondCoefficient, 0 if equals
  */
 int compare_end(const void* a_ptr, const void* b_ptr) {
     struct Interval* a_str = (struct Interval*)a_ptr;
@@ -150,11 +150,11 @@ int compare_end(const void* a_ptr, const void* b_ptr) {
 }
 
 /**
- * Compares two intervals start to end (left margin of the first interval to right margin of the second one)
+ * Compares two intervals start to end (left margin of the firstCoefficient interval to right margin of the secondCoefficient one)
  *
- * @param a_ptr first(left) interval
+ * @param a_ptr firstCoefficient(left) interval
  * @param b_ptr next(right) interval
- * @return -1 if first is less, 1 when greater than second, 0 if equals
+ * @return -1 if firstCoefficient is less, 1 when greater than secondCoefficient, 0 if equals
  */
 int compare_start_to_end(const void* a_ptr, const void* b_ptr) {
     struct Interval* a_str = (struct Interval*)a_ptr;
@@ -174,7 +174,7 @@ int compare_start_to_end(const void* a_ptr, const void* b_ptr) {
 /**
  * Checks if two sorted intervals intersect
  *
- * @param a_ptr first(left) interval
+ * @param a_ptr firstCoefficient(left) interval
  * @param b_ptr next(right) interval
  * @return true if intersect, otherwise false
  */
@@ -225,7 +225,7 @@ struct SetInterval* get_union(struct SetInterval* set) {
         return union_set;
     }
     sort_intervals(set);
-    //assign current result to the first interval
+    //assign current result to the firstCoefficient interval
     struct Interval* prototype = set->in_array[0];
     add(union_set, prototype->left, prototype->right, prototype->a, prototype->b);
     if (set->counter == 1) {

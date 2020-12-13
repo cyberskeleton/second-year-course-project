@@ -1,6 +1,7 @@
 #include <iostream>
 #include "intervals_c/headers/tests_c.h"
 #include "intervals_cpp/headers/cross_tests.h"
+#include "intervals_cpp/headers/ServiceTests.h"
 
 using namespace std;
 
@@ -14,6 +15,10 @@ int main() {
     cout << "Running C++ cross_tests wrapping basic implementation up..." << endl;
     cross_tests::run_cpp_tests();
     cout << "...end of C++ cross_tests\n" << endl;
+
+    cout << "Running ServiceTests implementation..." << endl;
+    ServiceTests::serviceTests();
+    cout << "...end of ServiceTests\n" << endl;
 
     return 0;
 }

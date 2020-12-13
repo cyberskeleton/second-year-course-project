@@ -3,6 +3,7 @@
 #include <string>
 #include "../../intervals_c/headers/set_interval.h"
 #include "IntervalWrapper.h"
+using namespace std;
 
 class SetIntervalWrapper {
 private:
@@ -17,7 +18,7 @@ public:
 
     void addInterval(IntervalWrapper* interval);
 
-    std::string toString();
+    string toString();
 };
 
 

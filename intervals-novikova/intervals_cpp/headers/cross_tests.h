@@ -5,7 +5,6 @@
 #include "../../intervals_c/headers/tests_c.h"
 #include "IntervalWrapper.h"
 #include "SetIntervalWrapper.h"
-#include "service.h"
 
 class cross_tests {
 public:

@@ -1,4 +1,5 @@
 #include "../headers/SetIntervalWrapper.h"
+using namespace std;
 
 SetIntervalWrapper::SetIntervalWrapper() {
     setInterval = init();
@@ -16,8 +17,8 @@ void SetIntervalWrapper::addInterval(IntervalWrapper *interval) {
     add(setInterval, interval->getInterval()->left, interval->getInterval()->right, interval->getInterval()->a, interval->getInterval()->b);
 }
 
-std::string SetIntervalWrapper::toString() {
-    std::string result = "{";
+string SetIntervalWrapper::toString() {
+    string result = "{";
     for (int i = 0; i < setInterval->counter; ++i) {
         const Interval* interval = setInterval->in_array[i];
         if (i > 0) result += ", ";

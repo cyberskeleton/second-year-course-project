@@ -13,7 +13,7 @@ IntervalWrapper::IntervalWrapper(Interval_type left, Interval_type right, double
     interval->b = b;
 }
 
-std::string IntervalWrapper::toString() {
+string IntervalWrapper::toString() {
     if (interval == NULL) {
         return "\u2205";
     }
