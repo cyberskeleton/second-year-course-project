@@ -28,4 +28,13 @@ void ServiceTests::serviceTests() {
     for(const string& current: actualStrings) {
         assert(find(expectedStrings.begin(), expectedStrings.end(), current) != expectedStrings.end());
     }
+
+    auto* toSolve = new Inequality();
+    toSolve->setFirstCoefficient(1);
+    toSolve->setSecondCoefficient(1);
+    toSolve->setFreeCoefficient(-6);
+    toSolve->setRelation(">=");
+    cout << "\nInequality: " + toSolve->toString() << endl;
+    SetIntervalWrapper solution = service->getSolution(toSolve);
+    cout << "Solution: " + solution.toString() << endl;
 }

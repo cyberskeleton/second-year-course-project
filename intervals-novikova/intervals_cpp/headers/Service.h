@@ -8,6 +8,9 @@
 #include <iostream>
 #include <algorithm>
 #include "Inequality.h"
+#include "IntervalWrapper.h"
+#include "SetIntervalWrapper.h"
+
 using namespace std;
 
 class Service {
@@ -28,6 +31,8 @@ public:
     string getInequalityRelation(string &inequalityString);
 
     string trim(string &s);
+
+    SetIntervalWrapper getSolution(Inequality *inequality);
 };
 
 

@@ -1,6 +1,12 @@
 
+#include <cstring>
 #include "../headers/Service.h"
+#include "../headers/IntervalWrapper.h"
+#include "../headers/SetIntervalWrapper.h"
+
 using namespace std;
+
+static const double APPROXIMATION = 0.1;
 
 Service::Service() = default;
 
@@ -90,4 +96,70 @@ string Service::getInequalityRelation(string &inequalityString) {
 string Service::trim(string &s) {
     s.erase(remove(s.begin(), s.end(), ' '), s.end());
     return s;
+}
+
+IntervalWrapper* getInterval(double leftMargin, double rightMargin, const string relation) {
+    Interval_type left;
+    Interval_type right;
+    double wa = leftMargin;
+    if (leftMargin == -INFINITY && rightMargin == INFINITY) {
+        wa = 0.0;
+        left = open;
+        right = open;
+    } else {
+        if (leftMargin == -INFINITY) {
+            wa = rightMargin - APPROXIMATION;
+            left = open;
+        } else if (rightMargin == INFINITY) {
+            wa = leftMargin + APPROXIMATION;
+            right = open;
+        } else {
+            wa = (leftMargin + rightMargin) / 2;
+        }
+    }
+    if ((wa + leftMargin) * (wa + rightMargin) < 0) {
+        if (relation == "<" || relation == "<=") {
+            return new IntervalWrapper(left, right, leftMargin, rightMargin);
+        }
+    }
+    if ((wa + leftMargin) * (wa + rightMargin) > 0) {
+        if (relation == ">" || relation == ">=") {
+            return new IntervalWrapper(left, right, leftMargin, rightMargin);
+        }
+    }
+    if ((wa + leftMargin) * (wa + rightMargin) == 0) {
+        if (relation == "<=" || relation == ">=") {
+            return new IntervalWrapper(closed, closed, leftMargin, rightMargin);
+        }
+    }
+    return new IntervalWrapper(open, open, 0, 0);
+}
+
+SetIntervalWrapper Service::getSolution(Inequality* inequality) {
+    double a = inequality->getFirstCoefficient();
+    double b = inequality->getSecondCoefficient();
+    double c = inequality->getFreeCoefficient();
+    double d = b * b - (4 * a * c);
+    double root1 = (-b + sqrt(d)) / (2 * a);
+    double root2 = (-b - sqrt(d)) / (2 * a);
+    // form vector of interval edges
+    vector<double> points;
+    points.push_back(-INFINITY);
+    if (MAX(root1, root2) == root2) {
+        points.push_back(root1);
+        points.push_back(root2);
+    } else if (MAX(root1, root2) == root1) {
+        points.push_back(root2);
+        points.push_back(root1);
+    } else {
+        points.push_back(root1);
+    }
+    points.push_back(INFINITY);
+    // add intervals to a set
+    SetIntervalWrapper intervals;
+    intervals.addInterval(getInterval(points[0], points[1], inequality->getRelation()));
+    intervals.addInterval(getInterval(points[1], points[2], inequality->getRelation()));
+    intervals.addInterval(getInterval(points[2], points[3], inequality->getRelation()));
+
+    return intervals;
 }

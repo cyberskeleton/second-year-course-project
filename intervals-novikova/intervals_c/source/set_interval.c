@@ -96,12 +96,11 @@ struct Interval* get_intersection(struct SetInterval* set) {
     }
     if (intersection->a == intersection->b) {
         if (intersection->left == closed && intersection->right == closed) {
-            // result is single point
+            // result is a single point
         } else {
             return NULL;
         }
     }
-
     return intersection;
 }
 
@@ -168,7 +167,7 @@ int compare_start_to_end(const void* a_ptr, const void* b_ptr) {
         return 1;
     }
     // A = (1;+INFINITY), B = (-INFINITY;1] => A > B
-    return a_str->left == open && b_str->right == closed ? 1 : a_str->left == closed && b_str->right == open ? -1 : 0;
+    return a_str->left == open && b_str->right == closed ? 1 : (a_str->left == closed && b_str->right == open ? -1 : 0);
 }
 
 /**

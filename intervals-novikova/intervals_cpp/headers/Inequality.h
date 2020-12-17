@@ -1,6 +1,7 @@
 #ifndef INTERVALS_INEQUALITY_H
 #define INTERVALS_INEQUALITY_H
 #include <string>
+#include <math.h>
 using namespace std;
 
 class Inequality {
