@@ -13,7 +13,21 @@ SetInterval* SetIntervalWrapper::getSetInterval() {
     return setInterval;
 }
 
+IntervalWrapper* SetIntervalWrapper::getIntervalWrapper(int index) {
+    auto* interval = setInterval->in_array[index];
+    return new IntervalWrapper(interval->left, interval->right, interval->a, interval->b);
+}
+
+void SetIntervalWrapper::copyIntervals(SetIntervalWrapper* source) {
+    for (int i = 0; i < source->getSetInterval()->counter; ++i) {
+        this->addInterval(source->getIntervalWrapper(i));
+    }
+}
+
 void SetIntervalWrapper::addInterval(IntervalWrapper *interval) {
+    if (interval == nullptr || interval->getInterval() == nullptr) {
+        return;
+    }
     add(setInterval, interval->getInterval()->left, interval->getInterval()->right, interval->getInterval()->a, interval->getInterval()->b);
 }
 

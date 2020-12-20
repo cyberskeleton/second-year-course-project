@@ -3,6 +3,20 @@ using namespace std;
 
 Inequality::Inequality() {}
 
+void Inequality::copyFields(const Inequality source) {
+    this->setFirstCoefficient(source.getFirstCoefficient());
+    this->setSecondCoefficient(source.getSecondCoefficient());
+    this->setFreeCoefficient(source.getFreeCoefficient());
+    this->setRelation(source.getRelation());
+}
+
+void Inequality::copyFields(Inequality* source) {
+    this->setFirstCoefficient(source->getFirstCoefficient());
+    this->setSecondCoefficient(source->getSecondCoefficient());
+    this->setFreeCoefficient(source->getFreeCoefficient());
+    this->setRelation(source->getRelation());
+}
+
 double Inequality::getFirstCoefficient() const {
     return firstCoefficient;
 }

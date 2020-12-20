@@ -19,6 +19,10 @@ public:
     void addInterval(IntervalWrapper* interval);
 
     string toString();
+
+    IntervalWrapper *getIntervalWrapper(int index);
+
+    void copyIntervals(SetIntervalWrapper *source);
 };
 
 

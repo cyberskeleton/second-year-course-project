@@ -67,44 +67,6 @@ struct Interval* get_by_index(struct SetInterval* set, int index) {
 }
 
 /**
- * Returns intersection of all intervals
- *
- * @param set of intervals
- * @return result of intersection or NULL
- */
-struct Interval* get_intersection(struct SetInterval* set) {
-    if (set->counter == 0) return NULL;
-    struct Interval* intersection = set->in_array[0];
-    if (set->counter == 1) return intersection;
-    for (int i = 1; i < set-> counter; i++) {
-        struct Interval* next = set->in_array[i];
-        if (intersection->b < next->a) {
-            return NULL;
-        }
-        if (intersection->a == next->a) {
-            intersection->left = intersection->left == open ? intersection->left : next->left;
-        } else if (intersection->a < next->a) {
-            intersection->a = next->a;
-            intersection->left = next->left;
-        }
-        if (intersection->b == next->b) {
-            intersection->right = intersection->right == open ? intersection->right : next->right;
-        } else if (intersection->b > next->b) {
-            intersection->b = next->b;
-            intersection->right = next->right;
-        }
-    }
-    if (intersection->a == intersection->b) {
-        if (intersection->left == closed && intersection->right == closed) {
-            // result is a single point
-        } else {
-            return NULL;
-        }
-    }
-    return intersection;
-}
-
-/**
  * Compares two intervals by start (left margin)
  *
  * @param a_ptr firstCoefficient(left) interval
@@ -212,6 +174,46 @@ void sort_intervals(struct SetInterval* set) {
 }
 
 /**
+ * Returns intersection of all intervals
+ *
+ * @param set of intervals
+ * @return result of intersection or NULL
+ */
+struct Interval* get_intersection(struct SetInterval* set) {
+    if (set->counter == 0) return NULL;
+    sort_intervals(set);
+    if (DEBUG) {printf("sorted: " ); for (int i = 0; i < set->counter; ++i) {print_interval(set->in_array[i]);}; printf(" ");}
+    struct Interval* intersection = set->in_array[0];
+    if (set->counter == 1) return intersection;
+    for (int i = 1; i < set-> counter; i++) {
+        struct Interval* next = set->in_array[i];
+        if (intersection->b < next->a) {
+            return NULL;
+        }
+        if (intersection->a == next->a) {
+            intersection->left = intersection->left == open ? intersection->left : next->left;
+        } else if (intersection->a < next->a) {
+            intersection->a = next->a;
+            intersection->left = next->left;
+        }
+        if (intersection->b == next->b) {
+            intersection->right = intersection->right == open ? intersection->right : next->right;
+        } else if (intersection->b > next->b) {
+            intersection->b = next->b;
+            intersection->right = next->right;
+        }
+    }
+    if (intersection->a == intersection->b) {
+        if (intersection->left == closed && intersection->right == closed) {
+            // result is a single point
+        } else {
+            return NULL;
+        }
+    }
+    return intersection;
+}
+
+/**
  * Returns union of intervals
  *
  * @param set of intervals to merge
@@ -224,7 +226,7 @@ struct SetInterval* get_union(struct SetInterval* set) {
         return union_set;
     }
     sort_intervals(set);
-    //assign current result to the firstCoefficient interval
+    //assign current result to the first interval
     struct Interval* prototype = set->in_array[0];
     add(union_set, prototype->left, prototype->right, prototype->a, prototype->b);
     if (set->counter == 1) {

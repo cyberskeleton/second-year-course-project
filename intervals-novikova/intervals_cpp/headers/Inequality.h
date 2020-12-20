@@ -32,6 +32,10 @@ public:
     string toString() const;
 
     string toString(const string &quadraticVariable, const string &variable) const;
+
+    void copyFields(const Inequality source);
+
+    void copyFields(Inequality *source);
 };
 
 #endif //INTERVALS_INEQUALITY_H

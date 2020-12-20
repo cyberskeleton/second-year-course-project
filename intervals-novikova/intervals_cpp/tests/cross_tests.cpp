@@ -19,7 +19,7 @@ void cross_tests::run_cpp_tests() {
 
     int startToEnd = compare_start_to_end(three->getInterval(), two->getInterval());
     string startToEndString = three->toString() + ((startToEnd == -1) ? " < " : (startToEnd == 1) ? " > " : " == ") + two->toString();
-    cout << "Comparing firstCoefficient start to secondCoefficient end: " + startToEndString << endl;
+    cout << "Comparing first start to second interval end: " + startToEndString << endl;
     assert(startToEndString == "(15.000000;inf) == [-1000.000000;15.000000)");
 
     auto *source = new SetIntervalWrapper();
@@ -34,7 +34,7 @@ void cross_tests::run_cpp_tests() {
 
     auto *unionSet = new SetIntervalWrapper(get_union(source->getSetInterval()));
     string unionSetString = one->toString() + " \u222A " + two->toString() + " \u222A " + three->toString() + " = " + unionSet->toString();
-    cout << unionSet << endl;
+    cout << unionSetString << endl;
     assert(unionSetString == "(-inf;15.000000] ∪ [-1000.000000;15.000000) ∪ (15.000000;inf) = {(-inf;inf)}");
 
     auto *intersection = new IntervalWrapper(get_intersection(source->getSetInterval()));

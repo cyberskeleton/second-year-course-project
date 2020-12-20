@@ -1,5 +1,5 @@
 # secondCoefficient-year-course-project
-c/c++ secondCoefficient year course project
+c/c++ secondCoefficient year course project</br>
 12. Interval
 Створити структуру ІНТЕРВАЛ(Interval) – поля(type_interval,a,b): два дійсних числа (a<b), при цьому ці два числа можуть бути рівними + або - нескінченостям. 
 Реалізувати методи: введення/виведення, перетин (як стандартне множення), об’єднання (як додавання) та різницю інтервалів. 
